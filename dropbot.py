@@ -27,13 +27,14 @@ class HelloWorldHandler(object):
         args.verbose=False
         args.zulip_api_key=None
         args.zulip_client=None
-        args.zulip_config_file='/home/rohitt/Documents/temp/zulip/rohittrc'
+        dir_path = os.path.dirname(os.path.realpath(__file__))
+        args.zulip_config_file=os.path.join(dir_path, 'humanrc')
         args.zulip_email=None
         args.zulip_site=None
 
         client = zulip.init_from_options(args)
 
-        data = client.get_subscribers(stream='GCI mentors')
+        data = client.get_subscribers(stream='core team')
         # subscriptions =  client.get_subscribers(stream='GCI mentors')
         self.data = data
         print(data)
