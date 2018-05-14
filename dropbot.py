@@ -1,6 +1,7 @@
 import argparse
 import zulip
 import subprocess
+import os
 
 class HelloWorldHandler(object):
     def usage(self):
@@ -47,7 +48,8 @@ class HelloWorldHandler(object):
             message['content'] = '--help'
         else:
             bot_handler.send_reply(message, "Trying to create droplet. Please wait.")
-        args = ['python', 'bots/dropbot/create.py']
+        dir_path = os.path.dirname(os.path.realpath(__file__))
+        args = ['python', os.path.join(dir_path, 'create.py')]
         args = args + message['content'].split(' ')
         print(args)
         proc = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
