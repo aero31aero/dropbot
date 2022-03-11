@@ -41,7 +41,7 @@ class HelloWorldHandler(object):
 
     def handle_message(self, message, bot_handler):
         length = len(self.data['subscribers'])
-        if not message['sender_email'] in self.data['subscribers']:
+        if not message['sender_id'] in self.data['subscribers']:
             bot_handler.send_reply(message, "You are not allowed to use this bot.")
             return
         if message['content'] == 'help':
